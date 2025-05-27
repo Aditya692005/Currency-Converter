@@ -38,7 +38,8 @@ Or simply open the `index.html` file in your browser.
 
 ## 📸 Screenshots
 
-![Screenshot](screenshot.png)
+![Screenshot](screenshot 1.png)
+![Screenshot](screenshot 2.png)
 
 ## 📄 License
 
