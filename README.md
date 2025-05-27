@@ -38,7 +38,7 @@ Or simply open the `index.html` file in your browser.
 
 ## 📸 Screenshots
 
-> *(Add screenshots of your app here — UI, conversions, etc.)*
+![Screenshot](screenshot.png)
 
 ## 📄 License
 
