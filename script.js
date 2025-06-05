@@ -54,5 +54,5 @@ const updateExchageRate = async () => {
     let rate = data[fromCurr.value.toLowerCase()];
     let actRate = rate[toCurr.value.toLowerCase()];
     let finalAmount = amtVal * actRate;
-    msg.innerText = `${amtVal} ${fromCurr.value} = ${finalAmount} ${toCurr.value}`
+    msg.innerText = `${amtVal} ${fromCurr.value} = ${finalAmount.toFixed(2)} ${toCurr.value}`
 };
