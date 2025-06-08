@@ -85,3 +85,7 @@ form button {
     color: white;
     cursor: pointer;
 }
+
+.fa-arrow-right-arrow-left {
+    cursor: pointer;
+}

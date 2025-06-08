@@ -4,7 +4,11 @@ const dropdowns = document.querySelectorAll(".dropdown select");
 const btn = document.querySelector("form button");
 const fromCurr = document.querySelector(".from select");
 const toCurr = document.querySelector(".to select");
-const msg = document.querySelector(".msg")
+const interChange = document.querySelector(".fa-solid.fa-arrow-right-arrow-left");
+const containers = document.querySelectorAll(".select-container");
+const fromContainer = containers[0];
+const toContainer = containers[1];
+const msg = document.querySelector(".msg");
 
 for(let select of dropdowns) {
     for(currCode in countryList) {
@@ -33,15 +37,31 @@ const updateFlag = (element) => {
 };
 
 window.addEventListener("load", () => {
-    updateExchageRate();
+    updateExchangeRate();
 });
 
 btn.addEventListener("click", (evt) => {
     evt.preventDefault();
-    updateExchageRate();
+    updateExchangeRate();
 });
 
-const updateExchageRate = async () => {
+interChange.addEventListener("click", () => {
+    let fromContainerImg = fromContainer.querySelector("img");
+    let toContainerImg = toContainer.querySelector("img");
+    let tempImg = fromContainerImg.src;
+    fromContainerImg.src = toContainerImg.src;
+    toContainerImg.src = tempImg;
+    let fromContainerSelect = fromContainer.querySelector("select");
+    let toContainerSelect = toContainer.querySelector("select");
+    let tempVal = fromContainerSelect.value;
+    fromContainerSelect.value = toContainerSelect.value;
+    toContainerSelect.value = tempVal;
+    updateFlag(fromContainerSelect);
+    updateFlag(toContainerSelect);
+    updateExchangeRate();
+});
+
+const updateExchangeRate = async () => {
     let amount = document.querySelector(".amount input");
     let amtVal = amount.value;
     if(amtVal === "" || amtVal < 1) {
