@@ -9,10 +9,6 @@ const containers = document.querySelectorAll(".select-container");
 const fromContainer = containers[0];
 const toContainer = containers[1];
 const msg = document.querySelector(".msg");
-var date = new Date().toJSON().split('T');
-const inputDate = document.getElementById("inputDate")
-inputDate.value = inputDate.max = date[0];
-inputDate.min = "2024-03-02"
 
 for(let select of dropdowns) {
     for(currCode in countryList) {
@@ -85,3 +81,16 @@ const updateExchangeRate = async () => {
     let finalAmount = amtVal * actRate;
     msg.innerText = `${amtVal} ${fromCurr.value} = ${finalAmount.toFixed(2)} ${toCurr.value}`
 };
+
+document.addEventListener("DOMContentLoaded", function () {
+    const inputDate = document.getElementById("inputDate");
+    const today = new Date().toJSON().split('T')[0];
+    inputDate.value = inputDate.max = today;
+    inputDate.min = "2024-03-02";
+    flatpickr("#inputDate", {
+        minDate: "2024-03-02",
+        maxDate: today,
+        dateFormat: "Y-m-d"
+    });
+    updateExchangeRate();
+});
