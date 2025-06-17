@@ -14,7 +14,7 @@
         <form>
             <div class="amount">
                 <p>Enter Amount</p>
-                <input type="text" value="1">
+                <input type="number" min="0" value="1" oninput="this.value = Math.abs(this.value)">
             </div>
             <div class="enter-date">
                 <p>Enter Date</p>

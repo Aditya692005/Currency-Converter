@@ -116,7 +116,6 @@ const updateGraph = async () => {
             .catch(() => null);
     }));
     const arr = results.filter(rate => rate !== null);
-    console.log(arr);
     Plotly.newPlot('plot', [{
         x: dates,
         y: arr,
