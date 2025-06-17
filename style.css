@@ -19,8 +19,8 @@ body {
     width: 40vh;
 }
 
-.amount {
-    margin-bottom: 2.5em;
+#plot {
+    margin-left: 3em;
 }
 
  #datepicker {

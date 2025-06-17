@@ -79,7 +79,8 @@ const updateExchangeRate = async () => {
     let rate = data[fromCurr.value.toLowerCase()];
     let actRate = rate[toCurr.value.toLowerCase()];
     let finalAmount = amtVal * actRate;
-    msg.innerText = `${amtVal} ${fromCurr.value} = ${finalAmount.toFixed(2)} ${toCurr.value}`
+    msg.innerText = `${amtVal} ${fromCurr.value} = ${finalAmount.toFixed(2)} ${toCurr.value}`;
+    updateGraph();
 };
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -94,3 +95,35 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     updateExchangeRate();
 });
+
+const updateGraph = async () => {
+    const startDate = "2024-03-02";
+    const dates = [];
+    let date = startDate;
+    dates.push(date);
+    const today = new Date().toISOString().split('T')[0];
+    while(date !== today) {
+        const tempDate = new Date(date);
+        tempDate.setDate(tempDate.getDate() + 1);
+        date = tempDate.toISOString().split('T')[0];
+        dates.push(date);
+    }
+    const results = await Promise.all(dates.map(date => {
+        const URL = `${BASE_URL}${date}/v1/currencies/${fromCurr.value.toLowerCase()}.json`;
+        return fetch(URL)
+            .then(res => res.json())
+            .then(data => data[fromCurr.value.toLowerCase()][toCurr.value.toLowerCase()])
+            .catch(() => null);
+    }));
+    const arr = results.filter(rate => rate !== null);
+    console.log(arr);
+    Plotly.newPlot('plot', [{
+        x: dates,
+        y: arr,
+        type: 'line'
+    }], {
+        width: 800,
+        height: 400,
+        title: 'Currency Exchange Rate Trend'
+    });
+};
