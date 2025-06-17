@@ -125,5 +125,7 @@ const updateGraph = async () => {
         width: 800,
         height: 400,
         title: 'Currency Exchange Rate Trend'
+    }).then(() => {
+        document.querySelector(".container").style.display = "block";
     });
 };
